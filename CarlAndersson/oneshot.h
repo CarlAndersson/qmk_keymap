@@ -1,6 +1,7 @@
 #pragma once
 
 #include QMK_KEYBOARD_H
+#include "keycodes.h"
 
 // Represents the states a oneshot key can be in
 typedef enum {
@@ -11,6 +12,8 @@ typedef enum {
     os_down_used,
     os_locked,
 } oneshot_state;
+
+bool process_oneshots(uint16_t keycode, keyrecord_t *record);
 
 // Custom oneshot mod implementation that doesn't rely on timers. If a mod is
 // used while it is held it will be unregistered on keyup as normal, otherwise

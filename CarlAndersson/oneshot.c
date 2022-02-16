@@ -70,6 +70,8 @@ void update_single_oneshot(
                 case os_down_unused:
                     *state = os_down_used;
                     break;
+                default:
+                    break;
                 }
             }
         } else {
@@ -91,4 +93,29 @@ void update_single_oneshot(
             }
         }
     }
+}
+
+oneshot_state os_ctrl_state = os_up_unqueued;
+oneshot_state os_shft_state = os_up_unqueued;
+oneshot_state os_alt_state = os_up_unqueued;
+oneshot_state os_cmd_state = os_up_unqueued;
+
+bool process_oneshots(uint16_t keycode, keyrecord_t *record) {
+    update_single_oneshot(
+        &os_shft_state, KC_LSFT, OS_SHFT, OS_HOLD,
+        keycode, record
+    );
+    update_single_oneshot(
+        &os_ctrl_state, KC_LCTL, OS_CTRL, OS_HOLD,
+        keycode, record
+    );
+    update_single_oneshot(
+        &os_alt_state, KC_LALT, OS_ALT, OS_HOLD,
+        keycode, record
+    );
+    update_single_oneshot(
+        &os_cmd_state, KC_LCMD, OS_CMD, OS_HOLD,
+        keycode, record
+    );
+    return true;
 }
