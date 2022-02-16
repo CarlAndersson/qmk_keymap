@@ -7,6 +7,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef USERSPACE_ONESHOTS_ENABLE
         && process_oneshots(keycode, record)
 #endif
+#ifdef USERSPACE_CAPSWORD_ENABLE
+        && process_capsword(keycode, record)
+#endif
         && true)) {
             return false;
         }

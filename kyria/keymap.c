@@ -10,13 +10,13 @@ enum layers {
 };
 
 enum custom_keycodes {
-    CAPS_WORD = KEYMAP_SAFE_RANGE,
+    REPEAT = KEYMAP_SAFE_RANGE,
     // OS_SHFT,
     // OS_ALT,
     // OS_CTRL,
     // OS_CMD,
     // OS_HOLD,
-    REPEAT,
+    // REPEAT,
 };
 
 
@@ -202,7 +202,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_downright, KC_NO),
     COMBO(combo_upleft, KC_ESC),
     COMBO(combo_downleft, KC_NO),
-    COMBO(combo_center, CAPS_WORD),
+    COMBO(combo_center, CAPSWORD),
     COMBO(combo_leftthumb, LA_NUMBERS),
     COMBO(combo_rightthumb, KC_LSFT),
     COMBO(combo_dualthumb, KC_ENTER),

@@ -9,6 +9,9 @@ enum userspace_custom_keycodes {
     OS_CMD,
     OS_HOLD,
 #endif
+#ifdef USERSPACE_CAPSWORD_ENABLE
+    CAPSWORD,
+#endif
     KEYMAP_SAFE_RANGE
 };
 #endif
