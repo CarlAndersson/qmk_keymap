@@ -9,15 +9,15 @@ enum layers {
     FUNCTION,
 };
 
-enum custom_keycodes {
-    REPEAT = KEYMAP_SAFE_RANGE,
+// enum custom_keycodes {
+    // REPEAT = KEYMAP_SAFE_RANGE,
     // OS_SHFT,
     // OS_ALT,
     // OS_CTRL,
     // OS_CMD,
     // OS_HOLD,
     // REPEAT,
-};
+// };
 
 
 #define MC_COPY LGUI(KC_C)

@@ -12,6 +12,9 @@ enum userspace_custom_keycodes {
 #ifdef USERSPACE_CAPSWORD_ENABLE
     CAPSWORD,
 #endif
+#ifdef USERSPACE_REPEATKEY_ENABLE
+    REPEAT,
+#endif
     KEYMAP_SAFE_RANGE
 };
 #endif

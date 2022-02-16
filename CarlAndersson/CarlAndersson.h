@@ -10,6 +10,8 @@
     #include "capsword.h"
 #endif
 
-
+#ifdef USERSPACE_REPEATKEY_ENABLE
+    #include "repeatkey.h"
+#endif
 
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
