@@ -1,6 +1,26 @@
 #include "oneshot.h"
 
-void update_single_oneshot(
+__attribute__((weak)) bool is_oneshot_ignored(uint16_t keycode) { return false; }
+__attribute__((weak)) bool isnt_oneshot_ignored(uint16_t keycode) { return false; }
+
+static bool is_ignored(uint16_t keycode) {
+    if (is_oneshot_ignored(keycode)) { return true; }
+    if (isnt_oneshot_ignored(keycode)) {return false;}
+
+    switch (keycode) {
+        case OS_SHFT:
+        case OS_ALT:
+        case OS_CTRL:
+        case OS_CMD:
+        case QK_MOMENTARY ... QK_MOMENTARY_MAX:  // normal move to layer keys, e.g. `MO(SYMBOLS)`
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:  // layer taps, e.g. `LT(SYMBOLS, KC_SPACE)`
+            return true;
+        default:
+            return false;
+    }
+}
+
+static void update_single_oneshot(
     oneshot_state *state,
     uint16_t mod,
     uint16_t trigger,
@@ -57,11 +77,11 @@ void update_single_oneshot(
         }
     } else {
         if (record->event.pressed) {
-            if (is_oneshot_cancel_key(keycode) && *state == os_up_queued) {
+            if (is_oneshot_cancel(keycode) && *state == os_up_queued) {
                 // Cancel oneshot on designated cancel keydown.
                 *state = os_up_unqueued;
                 unregister_code(mod);
-            } else if (!is_oneshot_ignored_key(keycode)) {
+            } else if (!is_ignored(keycode)) {
                 // "normal" key was  pressed, using the one-shot. dont clear here since we need to keep it for this keypress
                 switch (*state) {
                 case os_up_queued:
@@ -75,7 +95,7 @@ void update_single_oneshot(
                 }
             }
         } else {
-            if (!is_oneshot_ignored_key(keycode)) {
+            if (!is_ignored(keycode)) {
                 // On non-ignored keyup, consider the oneshot used.
                 switch (*state) {
                 case os_down_unused:

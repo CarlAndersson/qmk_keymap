@@ -103,28 +103,12 @@ combo_t key_combos[COMBO_COUNT] = {
 
 
 
-bool is_oneshot_cancel_key(uint16_t keycode) {
+bool is_oneshot_cancel(uint16_t keycode) {
     switch (keycode) {
-    case LA_NAVIGATE:
-        return true;
-    default:
-        return false;
-    }
-}
-
-bool is_oneshot_ignored_key(uint16_t keycode) {
-
-    switch (keycode) {
-    case LA_SYMBOLS:
-    case LA_NUMBERS:
-    case LA_NAVIGATE:
-    case OS_SHFT:
-    case OS_ALT:
-    case OS_CTRL:
-    case OS_CMD:
-        return true;
-    default:
-        return false;
+        case LA_NAVIGATE:
+            return true;
+        default:
+            return false;
     }
 }
 
