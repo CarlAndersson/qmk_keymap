@@ -5,7 +5,7 @@ __attribute__((weak)) bool isnt_capsword_shifted(uint16_t keycode) { return fals
 __attribute__((weak)) bool is_capsword_continue(uint16_t keycode) { return false; }
 __attribute__((weak)) bool isnt_capsword_continue(uint16_t keycode) { return false; }
 
-bool is_shifted(uint16_t keycode) {
+static bool is_shifted(uint16_t keycode) {
     if (is_capsword_shifted(keycode)) {return true;}
     if (isnt_capsword_shifted(keycode)) {return false;}
     switch (keycode) {
@@ -16,7 +16,7 @@ bool is_shifted(uint16_t keycode) {
     }
 }
 
-bool is_continue(uint16_t keycode) {
+static bool is_continue(uint16_t keycode) {
     if (is_capsword_continue(keycode)) {return true;}
     if (isnt_capsword_continue(keycode)) {return false;}
     switch (keycode) {
@@ -31,8 +31,8 @@ bool is_continue(uint16_t keycode) {
     }
 }
 
-bool capsword_enabled = false;
-bool capsword_shifted = false;
+static bool capsword_enabled = false;
+static bool capsword_shifted = false;
 
 bool process_capsword(uint16_t keycode, keyrecord_t *record) {
     if (!capsword_enabled) {
