@@ -14,9 +14,9 @@ enum layers {
 #define MC_UNDO LGUI(KC_Z)
 #define MC_CMNT LGUI(KC_SLSH)
 
-#define SE_ARNG LALT(KC_LBRC)
-#define SE_ADIA LALT(KC_QUOT)
-#define SE_ODIA LALT(KC_SCLN)
+#define SE_ARNG LALT(KC_W)
+#define SE_ADIA LALT(KC_A)
+#define SE_ODIA LALT(KC_O)
 
 #define LA_NAVIGATE MO(NAVIGATE)
 #define LA_SYMBOLS MO(SYMBOLS)
