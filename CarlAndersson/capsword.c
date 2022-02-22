@@ -25,6 +25,7 @@ static bool is_continue(uint16_t keycode) {
         case KC_UNDS:
         case KC_BSPC:
         case QK_MOMENTARY ... QK_MOMENTARY_MAX:  // normal move to layer keys, e.g. `MO(SYMBOLS)`
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:  // layer taps, e.g. `LT(SYMBOLS, KC_SPACE)`
             return true;
         default:
             return false;
@@ -35,6 +36,17 @@ static bool capsword_enabled = false;
 static bool capsword_shifted = false;
 
 bool process_capsword(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            // Earlier return if this has not been considered tapped yet.
+            if (record->tap.count == 0) {
+                return true;
+            }
+            // Get the base tapping keycode of a mod- or layer-tap key.
+            keycode &= 0xff;
+    }
+
     if (!capsword_enabled) {
         if (keycode == CAPSWORD && record->event.pressed) {
             capsword_enabled = true;
