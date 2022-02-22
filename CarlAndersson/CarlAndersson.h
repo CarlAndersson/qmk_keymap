@@ -6,6 +6,10 @@
     #include "oneshot.h"
 #endif
 
+#ifdef USERSPACE_CAPITALIZE_ENABLE
+    #include "capitalize.h"
+#endif
+
 #ifdef USERSPACE_CAPSWORD_ENABLE
     #include "capsword.h"
 #endif
