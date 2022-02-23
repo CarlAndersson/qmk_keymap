@@ -4,10 +4,11 @@ __attribute__((weak)) bool is_capsword_shifted(uint16_t keycode) { return false;
 __attribute__((weak)) bool isnt_capsword_shifted(uint16_t keycode) { return false; }
 __attribute__((weak)) bool is_capsword_continue(uint16_t keycode) { return false; }
 __attribute__((weak)) bool isnt_capsword_continue(uint16_t keycode) { return false; }
+__attribute__((weak)) bool is_capsword_keycode(uint16_t keycode) { return false; }
 
 static bool is_shifted(uint16_t keycode) {
-    if (is_capsword_shifted(keycode)) {return true;}
-    if (isnt_capsword_shifted(keycode)) {return false;}
+    if (is_capsword_shifted(keycode)) { return true; }
+    if (isnt_capsword_shifted(keycode)) { return false; }
     switch (keycode) {
         case KC_A ... KC_Z:
             return true;
@@ -17,8 +18,8 @@ static bool is_shifted(uint16_t keycode) {
 }
 
 static bool is_continue(uint16_t keycode) {
-    if (is_capsword_continue(keycode)) {return true;}
-    if (isnt_capsword_continue(keycode)) {return false;}
+    if (is_capsword_continue(keycode)) { return true; }
+    if (isnt_capsword_continue(keycode)) { return false; }
     switch (keycode) {
         case KC_1 ... KC_0:
         case KC_MINS:
@@ -34,21 +35,14 @@ static bool is_continue(uint16_t keycode) {
 
 static bool capsword_enabled = false;
 static bool capsword_shifted = false;
+static keypress_t keypress_type;
 
 bool process_capsword(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-            // Earlier return if this has not been considered tapped yet.
-            if (record->tap.count == 0) {
-                return true;
-            }
-            // Get the base tapping keycode of a mod- or layer-tap key.
-            keycode &= 0xff;
-    }
+    keypress_type = determine_keypress_type(keycode, record);
+    if (keypress_type == KEYPRESS_TAP_KEY_HELD) { return true; }
 
     if (!capsword_enabled) {
-        if (keycode == CAPSWORD && record->event.pressed) {
+        if ((keycode == CAPSWORD || is_capsword_keycode(keycode)) && record->event.pressed) {
             capsword_enabled = true;
             return false;
         }
@@ -58,6 +52,8 @@ bool process_capsword(uint16_t keycode, keyrecord_t *record) {
     if (!record->event.pressed) {
         return true;
     }
+
+    if (keypress_type == KEYPRESS_TAP_KEY_TAPPED) { keycode = get_tapkey_tap_keycode(keycode); }
 
     // caps word is on, and we have a keypress
     if (is_shifted(keycode)) {
@@ -78,4 +74,3 @@ bool process_capsword(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
-

@@ -20,7 +20,9 @@ static bool is_ignored(uint16_t keycode) {
     }
 }
 
-static void update_single_oneshot(
+static keypress_t keypress_type;
+
+static bool update_single_oneshot(
     oneshot_state *state,
     uint16_t mod,
     uint16_t trigger,
@@ -28,11 +30,14 @@ static void update_single_oneshot(
     uint16_t keycode,
     keyrecord_t *record
 ) {
+    keypress_type = determine_keypress_type(keycode, record);
     if (*state == os_up_used) {
         // we end up here after a one-shot was used, before the keyup event
         unregister_code(mod);
         *state = os_up_unqueued;
     }
+    if (keypress_type == KEYPRESS_TAP_KEY_HELD) { return true; }
+
     if (keycode == trigger) {
         if (record->event.pressed) {
             // OS key was pressed
@@ -56,6 +61,7 @@ static void update_single_oneshot(
                 break;
             }
         }
+        return false;
     } else if (keycode == lock) {
         if (record->event.pressed) {
             // The lock key was pressed
@@ -75,8 +81,10 @@ static void update_single_oneshot(
                 break;
             }
         }
+        return false;
     } else {
         if (record->event.pressed) {
+            if (keypress_type == KEYPRESS_TAP_KEY_TAPPED) { keycode = get_tapkey_tap_keycode(keycode); }
             if (is_oneshot_cancel(keycode) && *state == os_up_queued) {
                 // Cancel oneshot on designated cancel keydown.
                 *state = os_up_unqueued;
@@ -113,6 +121,7 @@ static void update_single_oneshot(
             }
         }
     }
+    return true;
 }
 
 static oneshot_state os_ctrl_state = os_up_unqueued;
@@ -121,21 +130,24 @@ static oneshot_state os_alt_state = os_up_unqueued;
 static oneshot_state os_cmd_state = os_up_unqueued;
 
 bool process_oneshots(uint16_t keycode, keyrecord_t *record) {
-    update_single_oneshot(
-        &os_shft_state, KC_LSFT, OS_SHFT, OS_HOLD,
-        keycode, record
-    );
-    update_single_oneshot(
-        &os_ctrl_state, KC_LCTL, OS_CTRL, OS_HOLD,
-        keycode, record
-    );
-    update_single_oneshot(
-        &os_alt_state, KC_LALT, OS_ALT, OS_HOLD,
-        keycode, record
-    );
-    update_single_oneshot(
-        &os_cmd_state, KC_LCMD, OS_CMD, OS_HOLD,
-        keycode, record
-    );
+    if (!(
+        update_single_oneshot(
+            &os_shft_state, KC_LSFT, OS_SHFT, OS_HOLD,
+            keycode, record
+        ) &&
+        update_single_oneshot(
+            &os_ctrl_state, KC_LCTL, OS_CTRL, OS_HOLD,
+            keycode, record
+        ) &&
+        update_single_oneshot(
+            &os_alt_state, KC_LALT, OS_ALT, OS_HOLD,
+            keycode, record
+        ) &&
+        update_single_oneshot(
+            &os_cmd_state, KC_LCMD, OS_CMD, OS_HOLD,
+            keycode, record
+        ) && true)) {
+            return false;
+        }
     return true;
 }

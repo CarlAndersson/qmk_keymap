@@ -8,6 +8,8 @@ __attribute__((weak)) bool is_capitalize_ignored(uint16_t keycode) {
     return false;
 }
 
+__attribute__((weak)) bool is_capitalize_keycode(uint16_t keycode) { return false; }
+
 static bool capitalize_next = false;
 static bool capitalized_previous = false;
 static uint16_t capsword_timer = 0;
@@ -20,8 +22,9 @@ bool process_capitalize(uint16_t keycode, keyrecord_t *record) {
         unregister_code(KC_LSFT);
         capitalized_previous = false;
     }
+    if (determine_keypress_type(keycode, record) == KEYPRESS_TAP_KEY_HELD) { return true; }
 
-    if (keycode == CAPITALIZE && record->event.pressed) {
+    if ((keycode == CAPITALIZE || is_capitalize_keycode(keycode)) && record->event.pressed) {
         if (capsword_timer == 0) {
             // First press for capitalize key
             capsword_timer = record->event.time;

@@ -1,4 +1,5 @@
 SRC += CarlAndersson.c
+SRC += keycodes.c
 
 ifeq ($(strip $(USERSPACE_ONESHOTS_ENABLE)), yes)
 	SRC += $(USER_PATH)/oneshot.c

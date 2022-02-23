@@ -6,4 +6,5 @@
 
 bool process_capitalize(uint16_t keycode, keyrecord_t *record);
 
+bool is_capitalize_keycode(uint16_t keycode);
 bool is_capitalize_ignored(uint16_t keycode);
