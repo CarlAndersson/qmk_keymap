@@ -9,7 +9,6 @@ enum userspace_custom_keycodes {
     OS_ALT,
     OS_CTRL,
     OS_CMD,
-    OS_HOLD,
 #endif
 #ifdef USERSPACE_CAPSWORD_ENABLE
     CAPSWORD,

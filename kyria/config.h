@@ -17,6 +17,7 @@
 #pragma once
 #define COMBO_COUNT 3
 #define COMBO_ONLY_FROM_LAYER 0
+#define ONESHOT_TIMEOUT 5000
 
 #define PERMISSIVE_HOLD
 
