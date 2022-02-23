@@ -15,8 +15,10 @@
  */
 
 #pragma once
-#define COMBO_COUNT 8
+#define COMBO_COUNT 3
 #define COMBO_ONLY_FROM_LAYER 0
+
+#define PERMISSIVE_HOLD
 
 // #ifdef OLED_DRIVER_ENABLE
 //   #define OLED_DISPLAY_128X64

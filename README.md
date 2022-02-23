@@ -2,11 +2,10 @@
 This is my keymap: Colemak, repeat key, caps word, one-shot mods. Five layers in 34 keys!
 
 ## Rationale
-The main thing which is a bit strange is the left thumb, which homes on a repeat key, and toggles both the nav layers and the number layer.
-This is driven by the wish to have one-handed access to both modifiers and numbers, while the right hand is on the mouse.
-With a dislike for mod-taps, there's not many other options than one-shots, to the left hand needs access to two layers.
-The repeat key is quite new in this layout, but it needs to be prominent to have any use at all.
-Hence, a thumb combo for the number layer.
+- Space and Capitalize should not be on the same hand, since space+capital is very frequent and would be a very annoying bigram.
+- "Modifier" should be on the left to have easy access to the typical copy+paste stuff
+- Main thumbs should be space and backspace
+- Secondary thumbs should be capitalize and modifier
 
 ## Layers
 Base layer: Colemak with some extra features for shifted punctuation.
@@ -14,61 +13,61 @@ Combos are global over all layers.
 ```
         | Esc |                                       | Tab |
 .-----------------------------.         .-----------------------------.
-|  q  |  w  |  f  |  p  |  g  |         |  j  |  l  |  u  |  y  |  ⌫  |
+|  q  |  w  |  f  |  p  |  g  |         |  j  |  l  |  u  |  y  | - _ |
 |-----+-----+-----+-----+-----|         |-----+-----+-----+-----+-----|
-|  a  |  r  |  s  |  t  |  d  |-CapsWrd-|  h  |  n  |  e  |  i  |  o  |
+|  a  |  r  |  s  |  t  |  d  |         |  h  |  n  |  e  |  i  |  o  |
 |-----+-----+-----+-----+-----|         |-----+-----+-----+-----+-----|
 |  z  |  x  |  c  |  v  |  b  |         |  k  |  m  | , ; | . : | ' " |
 .-----------------+-----+-----|         |-----+-----+-----------------.
-                  | Nav | Rep | -Enter- |Space| Sym |
+                  | Mod |Space|         |Bspce| Cap |
+                  | Nav | Num | -Enter- | Sym |     |
                   .-----+-----.         .-----+-----.
-                    | Nums |
 ```
 Number layer: numpad on the left and "mathy" symbols on the right.
 ```
 .-----------------------------.        .-----------------------------.
-|     |  7  |  8  |  9  |     |        |     |  /  |  \  |  *  |  ⌫  |
+|     |  7  |  8  |  9  |     |        |  j  |  /  |  \  |  *  |  -  |
 |-----+-----+-----+-----+-----|        |-----+-----+-----+-----+-----|
 |  0  |  4  |  5  |  6  |  <  |        |  >  |  -  |  =  |  +  |  ^  |
 |-----+-----+-----+-----+-----|        |-----+-----+-----+-----+-----|
-|     |  1  |  2  |  3  |     |        |     |  ~  |  ,  |  .  |     |
+|     |  1  |  2  |  3  |     |        |     |     |  ,  |  .  |  `  |
 .-----------------+-----+-----|        |-----+-----+-----------------.
-                  | --------- |        |     |     |
+                  |     | --- |        |     |     |
                   .-----+-----.        .-----+-----.
 ```
 Symbol layer: Has the remaining symbols and spots for Swedish letters.
 ```
 .-----------------------------.        .-----------------------------.
-|     |  ?  |  !  |  %  |     |        |     |  |  |  {  |  }  |  å  |
+|     |  {  |  }  |  %  |     |        |     |  |  |  &  |  å  |  ä  |
 |-----+-----+-----+-----+-----|        |-----+-----+-----+-----+-----|
-|  @  |  (  |  )  |  #  |  <  |        |  >  |  _  |  $  |  ä  |  ö  |
+|  @  |  (  |  )  |  #  |  $  |        |     |  ~  |  ?  |  !  |  ö  |
 |-----+-----+-----+-----+-----|        |-----+-----+-----+-----+-----|
-|  &  |  [  |  ]  |     |     |        |     |     |     |     |  `  |
+|     |  [  |  ]  |     |     |        |     |     |     |     |     |
 .-----------------+-----+-----|        |-----+-----+-----------------.
-                  |     |     |        |     | --- |
+                  |     |     |        | --- |     |
                   .-----+-----.        .-----+-----.
 ```
 Navigation layer: Modifiers, navigation, and macros.
 Very useful for code mangling.
 ```
 .-----------------------------.        .-----------------------------.
-|     |     |     |     |     |        |     |     |     |     |  ⌫  |
+|Enter| Tab |Space|Bspce| Del |        |     |     |     |     |     |
 |-----+-----+-----+-----+-----|        |-----+-----+-----+-----+-----|
 |Shift| Ctrl| Alt | Cmd |     |        |     |  ←  |  ↑  |  →  |     |
 |-----+-----+-----+-----+-----|        |-----+-----+-----+-----+-----|
 |Undo | Cut |Copy |Paste|Cmnt |        |     |Dednt|  ↓  |Indnt|     |
 .-----------------+-----+-----|        |-----+-----+-----------------.
-                  | --- |     |        |Space|     |
+                  | --- |     |        |Bspce|     |
                   .-----+-----.        .-----+-----.
 ```
-Function layer: Not much more than F-keys at the moment.
+Function layer: F-keys and media control.
 ```
 .-----------------------------.        .-----------------------------.
 |     |     |     |     |     |        | F1  | F2  |  F3 | F4  | F5  |
 |-----+-----+-----+-----+-----|        |-----+-----+-----+-----+-----|
-|     |     |     |     |     |        | F6  | F7  | F8  | F9  | F10 |
+|     |Vol -|Mute |Vol +|     |        | F6  | F7  | F8  | F9  | F10 |
 |-----+-----+-----+-----+-----|        |-----+-----+-----+-----+-----|
-|     |     |     |     |     |        | F11 | F12 | F13 | F14 | F15 |
+|     |Prev |Pause|Next |     |        | F11 | F12 | F13 | F14 | F15 |
 .-----------------+-----+-----|        |-----+-----+-----------------.
                   | --- |     |        |     | --- |
                   .-----+-----.        .-----+-----.
