@@ -16,6 +16,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef USERSPACE_REPEATKEY_ENABLE
         && process_repeatkey(keycode, record)
 #endif
+#ifdef USERSPACE_MACROS_ENABLE
+        && process_macros(keycode, record)
+#endif
+        && process_os_toggle(keycode, record)
         && true)) {
             return false;
         }

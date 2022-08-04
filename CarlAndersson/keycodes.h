@@ -4,6 +4,10 @@
 
 enum userspace_custom_keycodes {
     VRSN = SAFE_RANGE,
+    OSTOGG_MACOS,
+    OSTOGG_WINDOWS,
+    OSTOGG_LINUX,
+    OSTOGG_SHOW,
 #ifdef USERSPACE_ONESHOTS_ENABLE
     OS_SHFT,
     OS_ALT,
@@ -19,6 +23,20 @@ enum userspace_custom_keycodes {
 #ifdef USERSPACE_REPEATKEY_ENABLE
     REPEAT,
 #endif
+#ifdef USERSPACE_MACROS_ENABLE
+    MC_UNDO,
+    MC_CUT,
+    MC_COPY,
+    MC_PASTE,
+    MC_COMMENT,
+    MC_WORD_LEFT,
+    MC_WORD_RIGHT,
+    MC_LINE_START,
+    MC_LINE_END,
+    MC_INDENT,
+    MC_DEDENT,
+#endif
+
     KEYMAP_SAFE_RANGE
 };
 

@@ -15,7 +15,7 @@
  */
 
 #pragma once
-#define COMBO_COUNT 3
+#define COMBO_COUNT 4
 #define COMBO_ONLY_FROM_LAYER 0
 #define ONESHOT_TIMEOUT 5000
 
@@ -51,7 +51,7 @@
 //   // #define MOUSEKEY_WHEEL_INTERVAL 32
 //   // #define MOUSEKEY_WHEEL_MAX_SPEED 1
 //   // #define MOUSEKEY_WHEEL_TIME_TO_MAX 0
- 
+
 //   #define MK_3_SPEED
 //   #define MK_MOMENTARY_ACCEL
 

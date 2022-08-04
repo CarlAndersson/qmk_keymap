@@ -18,4 +18,9 @@
     #include "repeatkey.h"
 #endif
 
+#ifdef USERSPACE_MACROS_ENABLE
+    #include "macros.h"
+#endif
+#include "os_toggle.h"
+
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
