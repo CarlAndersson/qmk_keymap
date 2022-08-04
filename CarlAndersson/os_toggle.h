@@ -10,3 +10,4 @@ typedef enum {
 } os_type_t;
 
 bool process_os_toggle(uint16_t keycode, keyrecord_t *record);
+os_type_t get_os_type(void);

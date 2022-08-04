@@ -1,7 +1,5 @@
 #include "macros.h"
 
-extern os_type_t os_type;
-
 bool process_macros(uint16_t keycode, keyrecord_t *record) {
     if (!record->event.pressed) {
         return true;
@@ -9,7 +7,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
         case MC_UNDO:
-            switch (os_type) {
+            switch (get_os_type()) {
                 case MACOS:
                     tap_code16(G(KC_Z));
                     return false;
@@ -19,7 +17,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
                     return false;
             }
         case MC_CUT:
-            switch (os_type) {
+            switch (get_os_type()) {
                     case MACOS:
                         tap_code16(G(KC_X));
                         return false;
@@ -29,7 +27,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
                         return false;
                 }
         case MC_COPY:
-            switch (os_type) {
+            switch (get_os_type()) {
                     case MACOS:
                         tap_code16(G(KC_C));
                         return false;
@@ -39,7 +37,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
                         return false;
                 }
         case MC_PASTE:
-            switch (os_type) {
+            switch (get_os_type()) {
                     case MACOS:
                         tap_code16(G(KC_V));
                         return false;
@@ -49,7 +47,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
                         return false;
                 }
         case MC_COMMENT:
-            switch (os_type) {
+            switch (get_os_type()) {
                 case MACOS:
                     tap_code16(G(KC_SLSH));
                     return false;
@@ -59,7 +57,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
                     return false;
             }
         case MC_WORD_LEFT:
-            switch (os_type) {
+            switch (get_os_type()) {
                 case MACOS:
                     tap_code16(A(KC_LEFT));
                     return false;
@@ -69,7 +67,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
                     return false;
             }
         case MC_WORD_RIGHT:
-            switch (os_type) {
+            switch (get_os_type()) {
                 case MACOS:
                     tap_code16(A(KC_RIGHT));
                     return false;
@@ -79,7 +77,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
                     return false;
             }
         case MC_LINE_START:
-            switch (os_type) {
+            switch (get_os_type()) {
                 case MACOS:
                     tap_code16(G(KC_LEFT));
                     return false;
@@ -89,7 +87,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
                     return false;
             }
         case MC_LINE_END:
-            switch (os_type) {
+            switch (get_os_type()) {
                 case MACOS:
                     tap_code16(G(KC_RIGHT));
                     return false;
@@ -99,7 +97,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
                     return false;
             }
         case MC_INDENT:
-            switch (os_type) {
+            switch (get_os_type()) {
                 case MACOS:
                     tap_code16(G(KC_RBRC));
                     return false;
@@ -109,7 +107,7 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
                     return false;
             }
         case MC_DEDENT:
-            switch (os_type) {
+            switch (get_os_type()) {
                 case MACOS:
                     tap_code16(G(KC_LBRC));
                     return false;
