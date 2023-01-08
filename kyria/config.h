@@ -15,7 +15,7 @@
  */
 
 #pragma once
-#define COMBO_COUNT 4
+#define COMBO_COUNT 1
 #define COMBO_ONLY_FROM_LAYER 0
 #define ONESHOT_TIMEOUT 5000
 
